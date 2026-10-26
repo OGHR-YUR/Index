@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O.G.Products | Curated Fashion Finds from Salt Lake City</title>
+<meta name="description" content="O.G.Products is a Salt Lake City fashion curation site. We hand-pick trending clothing, shoes, jewelry, watches, handbags and accessories and link you straight to them on Amazon.">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0c'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='30' font-weight='700' fill='%23d4af37'%3EOG%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0b0b0c; --bg2:#131315; --card:#18181b; --line:#2a2a2e;
+    --text:#f4f1ea; --muted:#a8a39a; --gold:#d4af37; --gold2:#f0d27a;
+    --radius:16px;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --display: "Didot","Bodoni 72","Playfair Display",Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  .gold{color:var(--gold)}
+  .eyebrow{font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  h1,h2{font-family:var(--display);font-weight:700;letter-spacing:-.01em;line-height:1.08}
+  h2{font-size:clamp(2rem,4vw,2.9rem);margin:.4rem 0 1rem}
+  section{padding:96px 0;border-top:1px solid var(--line)}
+  .lead{color:var(--muted);max-width:640px;font-size:1.06rem}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.82);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:var(--display);font-size:1.45rem;font-weight:700;text-decoration:none;letter-spacing:.02em}
+  .logo span{color:var(--gold)}
+  .nav ul{display:flex;gap:28px;list-style:none}
+  .nav ul a{text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500;transition:color .2s}
+  .nav ul a:hover{color:var(--gold2)}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:8px 12px;font-size:.9rem}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;padding:120px 0 110px;border-top:none;
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(212,175,55,.22), transparent 60%),
+      radial-gradient(700px 420px at -10% 110%, rgba(212,175,55,.10), transparent 60%),
+      var(--bg)}
+  .hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:56px 56px;mask-image:linear-gradient(to bottom,#000 30%,transparent);-webkit-mask-image:linear-gradient(to bottom,#000 30%,transparent);pointer-events:none}
+  .hero .wrap{position:relative;z-index:1}
+  .hero h1{font-size:clamp(2.8rem,7.5vw,5.6rem);margin:18px 0 22px;max-width:900px}
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero p{font-size:1.15rem;color:var(--muted);max-width:600px}
+  .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none;font-size:.98rem;transition:transform .15s,background .2s,border-color .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#111}
+  .btn-ghost{border:1px solid var(--line);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--gold)}
+  .stats{display:flex;flex-wrap:wrap;gap:40px;margin-top:64px}
+  .stats div{border-left:2px solid var(--gold);padding-left:16px}
+  .stats b{display:block;font-family:var(--display);font-size:1.9rem}
+  .stats span{color:var(--muted);font-size:.88rem}
+
+  /* categories */
+  .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+  .cat{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:170px;padding:22px;border-radius:var(--radius);background:linear-gradient(160deg,#1d1d21,#121214);border:1px solid var(--line);text-decoration:none;overflow:hidden;transition:border-color .2s,transform .2s;cursor:pointer}
+  .cat:hover{border-color:var(--gold);transform:translateY(-3px)}
+  .cat .ico{position:absolute;top:18px;right:20px;font-family:var(--display);font-size:2.6rem;color:rgba(212,175,55,.22);font-weight:700}
+  .cat h3{font-size:1.15rem;font-weight:700}
+  .cat p{color:var(--muted);font-size:.86rem}
+
+  /* picks */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0 28px}
+  .filters button{background:transparent;border:1px solid var(--line);color:var(--muted);padding:8px 16px;border-radius:999px;font:500 .86rem var(--sans);cursor:pointer;transition:all .2s}
+  .filters button:hover{color:var(--text);border-color:#555}
+  .filters button.on{background:var(--gold);border-color:var(--gold);color:#111}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+  .card{display:flex;flex-direction:column;gap:14px;padding:20px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);transition:border-color .2s,transform .2s}
+  .card:hover{border-color:rgba(212,175,55,.6);transform:translateY(-2px)}
+  .card-top{display:flex;justify-content:space-between;align-items:center}
+  .tag{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .rank{font-family:var(--display);font-weight:700;color:var(--muted);font-size:.95rem}
+  .card h3{font-size:.98rem;font-weight:600;line-height:1.45;flex:1}
+  .btn-sm{align-self:flex-start;font-size:.86rem;font-weight:600;color:var(--gold2);text-decoration:none;border-bottom:1px solid rgba(240,210,122,.35);padding-bottom:2px}
+  .btn-sm:hover{border-color:var(--gold2)}
+  .note{margin-top:22px;color:var(--muted);font-size:.84rem}
+  .card.hide{display:none}
+
+  /* how / about */
+  .two{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+  .steps{display:grid;gap:14px}
+  .step{display:flex;gap:18px;padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg2)}
+  .step b{font-family:var(--display);font-size:1.6rem;color:var(--gold);line-height:1}
+  .step h3{font-size:1.02rem;margin-bottom:4px}
+  .step p{color:var(--muted);font-size:.93rem}
+  .about p{color:var(--muted);margin-bottom:16px}
+  .about p strong{color:var(--text)}
+
+  /* contact */
+  .contact-box{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+  .cbox{padding:28px;border-radius:var(--radius);border:1px solid var(--line);background:var(--bg2)}
+  .cbox h3{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .cbox a,.cbox p.big{font-size:1.25rem;font-weight:600;text-decoration:none;word-break:break-word}
+  .cbox a:hover{color:var(--gold2)}
+  .cbox p.sm{color:var(--muted);font-size:.9rem;margin-top:8px}
+
+  /* disclosure */
+  .disclose{background:var(--bg2)}
+  .disc-card{border:1px solid rgba(212,175,55,.45);border-radius:var(--radius);padding:32px;background:linear-gradient(160deg,rgba(212,175,55,.08),transparent)}
+  .disc-card p{color:var(--muted);margin-bottom:12px}
+  .disc-card p strong{color:var(--text)}
+  .disc-card a{color:var(--gold2)}
+
+  footer{border-top:1px solid var(--line);padding:48px 0 40px;color:var(--muted);font-size:.88rem}
+  footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:flex-start}
+  footer nav a{margin-right:20px;text-decoration:none}
+  footer nav a:hover{color:var(--gold2)}
+  .amz{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);color:var(--text)}
+
+  @media (max-width:900px){
+    .cats{grid-template-columns:repeat(2,1fr)}
+    .two,.contact-box{grid-template-columns:1fr}
+    section{padding:72px 0}
+  }
+  @media (max-width:720px){
+    .menu-btn{display:block}
+    .nav ul{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line)}
+    .nav ul.open{display:flex}
+    .nav ul a{display:block;padding:14px 22px;border-top:1px solid var(--line)}
+    .hero{padding:80px 0 72px}
+    .stats{gap:24px}
+  }
+  @media (max-width:440px){ .cats{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top">O.G.<span>Products</span></a>
+    <button class="menu-btn" aria-label="Open menu" onclick="document.getElementById('menu').classList.toggle('open')">Menu</button>
+    <ul id="menu">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#picks">Trending</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#disclosure">Disclosure</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Curated in Salt Lake City</div>
+      <h1>The finds everyone's wearing. <em>Picked for you.</em></h1>
+      <p>O.G.Products scouts what's trending in clothing, shoes, jewelry, watches, handbags and accessories, then cuts the list down to the pieces actually worth your money. No endless scrolling. Just the good stuff.</p>
+      <div class="cta">
+        <a class="btn btn-gold" href="#picks">See trending picks &rarr;</a>
+        <a class="btn btn-ghost" href="#shop">Shop by category</a>
+      </div>
+      <div class="stats">
+        <div><b>50</b><span>trending picks this week</span></div>
+        <div><b>9</b><span>fashion categories tracked</span></div>
+        <div><b>Weekly</b><span>list refreshed every Monday</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP BY CATEGORY -->
+  <section id="shop">
+    <div class="wrap">
+      <div class="eyebrow">Shop by category</div>
+      <h2>Start with what you need.</h2>
+      <p class="lead">Every category is built from the current best-seller charts, then filtered for style, value and real-world wearability.</p>
+      <div class="cats">
+        <a class="cat" data-go="womens-fashion"><span class="ico">01</span><h3>Women's clothing</h3><p>Fitted basics, layers, leggings</p></a>
+        <a class="cat" data-go="mens-fashion"><span class="ico">02</span><h3>Men's clothing</h3><p>Hoodies, fleece, everyday staples</p></a>
+        <a class="cat" data-go="womens-shoes"><span class="ico">03</span><h3>Women's shoes</h3><p>Clogs, flats, cozy slippers</p></a>
+        <a class="cat" data-go="mens-shoes"><span class="ico">04</span><h3>Men's shoes</h3><p>Slides, trainers, runners</p></a>
+        <a class="cat" data-go="womens-jewelry"><span class="ico">05</span><h3>Women's jewelry</h3><p>Hoops, stacks, statement pieces</p></a>
+        <a class="cat" data-go="mens-jewelry"><span class="ico">06</span><h3>Men's jewelry</h3><p>Chains, rings, huggies</p></a>
+        <a class="cat" href="https://www.amazon.com/s?k=watches" target="_blank" rel="sponsored noopener"><span class="ico">07</span><h3>Watches</h3><p>Browse watches on Amazon &rarr;</p></a>
+        <a class="cat" data-go="handbags-wallets"><span class="ico">08</span><h3>Handbags &amp; wallets</h3><p>Totes, crossbodies, slim wallets</p></a>
+        <a class="cat" data-go="womens-accessories"><span class="ico">09</span><h3>Women's accessories</h3><p>Belts, shades, headbands</p></a>
+        <a class="cat" data-go="mens-accessories"><span class="ico">10</span><h3>Men's accessories</h3><p>Caps, beanies, ties</p></a>
+        <a class="cat" data-go="all"><span class="ico">&#9733;</span><h3>Everything trending</h3><p>The full weekly list</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRENDING PICKS -->
+  <section id="picks">
+    <div class="wrap">
+      <div class="eyebrow">Trending picks</div>
+      <h2>What's moving right now.</h2>
+      <p class="lead">Our current shortlist, pulled from Amazon's Best Sellers charts in each category. The number on each card is the item's spot in its category when we last checked. Tap any pick to see current price, sizes and reviews on Amazon.</p>
+      <div class="filters" role="group" aria-label="Filter picks by category">
+        <button type="button" data-filter="all" class="on">All</button>
+        <button type="button" data-filter="womens-fashion">Women&#x27;s fashion</button>
+        <button type="button" data-filter="mens-fashion">Men&#x27;s fashion</button>
+        <button type="button" data-filter="womens-shoes">Women&#x27;s shoes</button>
+        <button type="button" data-filter="mens-shoes">Men&#x27;s shoes</button>
+        <button type="button" data-filter="womens-jewelry">Women&#x27;s jewelry</button>
+        <button type="button" data-filter="mens-jewelry">Men&#x27;s jewelry</button>
+        <button type="button" data-filter="handbags-wallets">Handbags &amp; wallets</button>
+        <button type="button" data-filter="womens-accessories">Women&#x27;s accessories</button>
+        <button type="button" data-filter="mens-accessories">Men&#x27;s accessories</button>
+      </div>
+      <div class="grid" id="grid">
+      <article class="card" data-cat="womens-fashion">
+        <div class="card-top"><span class="tag">Women&#x27;s fashion</span><span class="rank">#1</span></div>
+        <h3>EVERSWE Women&#x27;s 80 Den Soft Opaque Tights, Women&#x27;s Tights</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B07ZTD3JZH" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-fashion">
+        <div class="card-top"><span class="tag">Women&#x27;s fashion</span><span class="rank">#2</span></div>
+        <h3>Trendy Queen Womens Long Sleeve T Shirts Fall Fashion Basic Y2K Tops</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0BW93676T" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-fashion">
+        <div class="card-top"><span class="tag">Women&#x27;s fashion</span><span class="rank">#3</span></div>
+        <h3>SZIVYSHI 14-Bone Overbust Corset Top</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B09W4S2ZX7" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-fashion">
+        <div class="card-top"><span class="tag">Women&#x27;s fashion</span><span class="rank">#4</span></div>
+        <h3>ANRABESS Women Long Sleeve Shirts Ribbed Fitted Tops</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0CYZM5RSM" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-fashion">
+        <div class="card-top"><span class="tag">Women&#x27;s fashion</span><span class="rank">#5</span></div>
+        <h3>SINOPHANT High Waisted Leggings Women with Pockets</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0CKZ4ZWYG" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-fashion">
+        <div class="card-top"><span class="tag">Women&#x27;s fashion</span><span class="rank">#6</span></div>
+        <h3>SINOPHANT High Waisted Leggings for Women - Full Length Capri Buttery</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0BVF476TZ" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-fashion">
+        <div class="card-top"><span class="tag">Men&#x27;s fashion</span><span class="rank">#1</span></div>
+        <h3>Hanes Men&#x27;s Hoodie - EcoSmart Fleece Hooded Sweatshirt for Men &amp; Women</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B00JUM2VAQ" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-fashion">
+        <div class="card-top"><span class="tag">Men&#x27;s fashion</span><span class="rank">#2</span></div>
+        <h3>Hanes Men&#x27;s Sweatshirt, EcoSmart Fleece Crewneck Sweatshirt, Big &amp; Tall</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B01L8JJ57U" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-fashion">
+        <div class="card-top"><span class="tag">Men&#x27;s fashion</span><span class="rank">#3</span></div>
+        <h3>Hanes Men&#x27;s Zip-up Hoodie, Ecosmart Fleece Full-zip Hoodie for Men</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B00JUM4DKC" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-fashion">
+        <div class="card-top"><span class="tag">Men&#x27;s fashion</span><span class="rank">#4</span></div>
+        <h3>Amazon Essentials Men&#x27;s Fleece Open Bottom Sweatpant (Available in Big</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B075JW7CCH" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-fashion">
+        <div class="card-top"><span class="tag">Men&#x27;s fashion</span><span class="rank">#5</span></div>
+        <h3>Fruit of the Loom Eversoft Fleece Elastic Bottom Sweatpants with</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B08YGNC2BZ" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-fashion">
+        <div class="card-top"><span class="tag">Men&#x27;s fashion</span><span class="rank">#6</span></div>
+        <h3>Hanes Men&#x27;s Underwear Boxer Briefs Pack, Cool &amp; Breathable Cotton</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B086KSDTQ4" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-shoes">
+        <div class="card-top"><span class="tag">Women&#x27;s shoes</span><span class="rank">#1</span></div>
+        <h3>Crocs Unisex-Adult Classic Clog, Clogs for Women and Men</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0014C0LSY" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-shoes">
+        <div class="card-top"><span class="tag">Women&#x27;s shoes</span><span class="rank">#2</span></div>
+        <h3>EverFoams Women&#x27;s Soft Curly Slippers Memory Foam Lightweight House</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B09JP2TRK4" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-shoes">
+        <div class="card-top"><span class="tag">Women&#x27;s shoes</span><span class="rank">#3</span></div>
+        <h3>Amazon Essentials Women&#x27;s Comfortable Round Toe Ballet Flats, Cushioned</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B07FQPT5MZ" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-shoes">
+        <div class="card-top"><span class="tag">Women&#x27;s shoes</span><span class="rank">#4</span></div>
+        <h3>EverFoams Womens Fuzzy Open-toe Slippers Memory Foam Indoor House Shoes</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0CLGNYKFR" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-shoes">
+        <div class="card-top"><span class="tag">Women&#x27;s shoes</span><span class="rank">#5</span></div>
+        <h3>KIDMI Genuine Suede Clogs for Women Men Cork Footbed Mules Potato Shoes</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0BS6G9WG6" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-shoes">
+        <div class="card-top"><span class="tag">Women&#x27;s shoes</span><span class="rank">#6</span></div>
+        <h3>PROJECT CLOUD 100% Genuine Leather Womens Cork Footbed Clogs for Women</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0CZY26HD8" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-shoes">
+        <div class="card-top"><span class="tag">Men&#x27;s shoes</span><span class="rank">#1</span></div>
+        <h3>adidas Men&#x27;s Adilette Shower Slides</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B091ZGGRB8" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-shoes">
+        <div class="card-top"><span class="tag">Men&#x27;s shoes</span><span class="rank">#2</span></div>
+        <h3>Water Shoes for Women Men Quick-Dry Aqua Socks Swim Beach Outfits</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B09Q3NN37M" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-shoes">
+        <div class="card-top"><span class="tag">Men&#x27;s shoes</span><span class="rank">#3</span></div>
+        <h3>New Balance Men&#x27;s 608 V5 Cross Trainer</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B07B421VFF" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-shoes">
+        <div class="card-top"><span class="tag">Men&#x27;s shoes</span><span class="rank">#4</span></div>
+        <h3>Crocs Unisex-Adult Classic Clog, Clogs for Women and Men</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0014C0LUC" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-shoes">
+        <div class="card-top"><span class="tag">Men&#x27;s shoes</span><span class="rank">#5</span></div>
+        <h3>ODOLY Genuine Suede Clogs for Women Men Comfort Cork Footbed Potato</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0CL4XJCJW" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-shoes">
+        <div class="card-top"><span class="tag">Men&#x27;s shoes</span><span class="rank">#6</span></div>
+        <h3>Brooks Men&#x27;s Adrenaline GTS 25 Running Shoe</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0DM37H7G6" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-jewelry">
+        <div class="card-top"><span class="tag">Women&#x27;s jewelry</span><span class="rank">#2</span></div>
+        <h3>Gokeey Gold Bracelets Set for Women Non Tarnish, Waterproof 14K Gold</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0DX6Q2K5D" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-jewelry">
+        <div class="card-top"><span class="tag">Women&#x27;s jewelry</span><span class="rank">#3</span></div>
+        <h3>4mm Thick Gold Plated Chunky Earrings Silver Plated Hoop Earrings For</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0BXKS63QS" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-jewelry">
+        <div class="card-top"><span class="tag">Women&#x27;s jewelry</span><span class="rank">#4</span></div>
+        <h3>Fesciory Black Necklace for Women, Adjustable Daily Goth Jewelry Gift</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0D9GWX6L6" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-jewelry">
+        <div class="card-top"><span class="tag">Women&#x27;s jewelry</span><span class="rank">#5</span></div>
+        <h3>6 Pairs Stud Earrings Set, Hypoallergenic Cubic Zirconia 316L Earrings</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B07RZHQF58" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-jewelry">
+        <div class="card-top"><span class="tag">Men&#x27;s jewelry</span><span class="rank">#1</span></div>
+        <h3>ThunderFit Silicone Rings for Men, Step Edge Rubber Wedding Bands 10mm</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B07CJMVH4M" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-jewelry">
+        <div class="card-top"><span class="tag">Men&#x27;s jewelry</span><span class="rank">#2</span></div>
+        <h3>Egnaro Men&#x27;s Silicone Wedding Rings, 8.5mm Wide 2mm Thick, 1 to 7</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B08HYKD6GV" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-jewelry">
+        <div class="card-top"><span class="tag">Men&#x27;s jewelry</span><span class="rank">#3</span></div>
+        <h3>ThunderFit Men&#x27;s Silicone Rings, Breathable Rubber Bands, 10mm Wide</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B07SDCBQC7" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-jewelry">
+        <div class="card-top"><span class="tag">Men&#x27;s jewelry</span><span class="rank">#5</span></div>
+        <h3>316L Surgical Stainless Steel Huggie Hoop Earrings 6mm 8mm 10mm 11mm</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0974Z2JNH" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-jewelry">
+        <div class="card-top"><span class="tag">Men&#x27;s jewelry</span><span class="rank">#6</span></div>
+        <h3>ChainsHouse Cuban Link Chain for Men, Stainless Steel Waterproof</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0BQB953Z5" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="handbags-wallets">
+        <div class="card-top"><span class="tag">Handbags &amp; wallets</span><span class="rank">#1</span></div>
+        <h3>Bagstellar Puffer Tote Bag for Women, Lightweight Puffy Work Tote</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0FFLXRTKP" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="handbags-wallets">
+        <div class="card-top"><span class="tag">Handbags &amp; wallets</span><span class="rank">#2</span></div>
+        <h3>KKXIU Shoulder Bag for Women Cute Hobo Purses and Handbags</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0DKMQ7958" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="handbags-wallets">
+        <div class="card-top"><span class="tag">Handbags &amp; wallets</span><span class="rank">#3</span></div>
+        <h3>Airkit Small Wallet Women RFID Blocking Vegan Leather Bifold Compact</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0D7MGD1BD" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="handbags-wallets">
+        <div class="card-top"><span class="tag">Handbags &amp; wallets</span><span class="rank">#4</span></div>
+        <h3>Banelu Small Sling Backpack Crossbody Bags for Women Men, Small Sling</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0C3LRC59F" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="handbags-wallets">
+        <div class="card-top"><span class="tag">Handbags &amp; wallets</span><span class="rank">#5</span></div>
+        <h3>BS-VOG Clear Purse for Stadium Events, Clear Bag for Women Adjustable</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0C65MQDXN" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="handbags-wallets">
+        <div class="card-top"><span class="tag">Handbags &amp; wallets</span><span class="rank">#6</span></div>
+        <h3>BAGSMART Cross Body Purse, Mini Crossbody Bags for Women Travel Purse</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0F4XLFZP8" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-accessories">
+        <div class="card-top"><span class="tag">Women&#x27;s accessories</span><span class="rank">#1</span></div>
+        <h3>Kitsch Zig Zag Headbands for Women - Black and Tortoise, 2 pcs</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0BNSF38C9" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-accessories">
+        <div class="card-top"><span class="tag">Women&#x27;s accessories</span><span class="rank">#2</span></div>
+        <h3>Fingerless Driving Gloves PU Faux Leather Outdoor Sport Half Finger</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B07842NBLX" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-accessories">
+        <div class="card-top"><span class="tag">Women&#x27;s accessories</span><span class="rank">#3</span></div>
+        <h3>Fuinloth Balaclava Ski Mask, Motorcycle Summer Thin Cooling UV</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B086Z2WR6Y" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-accessories">
+        <div class="card-top"><span class="tag">Women&#x27;s accessories</span><span class="rank">#4</span></div>
+        <h3>JASGOOD Women&#x27;s Renaissance Corset Belts Elastic Costume Wide Waist Belt</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B07QMLQL5K" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="womens-accessories">
+        <div class="card-top"><span class="tag">Women&#x27;s accessories</span><span class="rank">#5</span></div>
+        <h3>SOJOS Retro Aviator Sunglasses Womens Mens,Trendy Rectangle Shades</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B09RZS3B83" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-accessories">
+        <div class="card-top"><span class="tag">Men&#x27;s accessories</span><span class="rank">#1</span></div>
+        <h3>JEMYGINS Solid Color Tie Mens Necktie for Business and Wedding</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B09P3YBS7C" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-accessories">
+        <div class="card-top"><span class="tag">Men&#x27;s accessories</span><span class="rank">#2</span></div>
+        <h3>JEMYGINS Solid Color Mens Suspender with 3 Strong Clips Adjustable</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0BV5Y2VWX" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-accessories">
+        <div class="card-top"><span class="tag">Men&#x27;s accessories</span><span class="rank">#3</span></div>
+        <h3>Carhartt Men&#x27;s Iconic A18 Watch Cap Beanie</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B002G9UDYG" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-accessories">
+        <div class="card-top"><span class="tag">Men&#x27;s accessories</span><span class="rank">#4</span></div>
+        <h3>JEMYGINS Solid Color Pre-tied Bow Tie Adjustable Bowtie for Men</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B0C4P1G4WW" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-accessories">
+        <div class="card-top"><span class="tag">Men&#x27;s accessories</span><span class="rank">#5</span></div>
+        <h3>Falari Baseball Cap Adjustable Size for Running Workouts and Outdoor</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B074CMRKV2" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      <article class="card" data-cat="mens-accessories">
+        <div class="card-top"><span class="tag">Men&#x27;s accessories</span><span class="rank">#6</span></div>
+        <h3>RBOCOTT Solid Color Tie Formal Necktie for Men</h3>
+        <a class="btn-sm" href="https://www.amazon.com/dp/B081R5CX8Y" target="_blank" rel="sponsored noopener">View on Amazon <span aria-hidden="true">&rarr;</span></a>
+      </article>
+      </div>
+      <p class="note">Rankings reflect a snapshot of Amazon Best Sellers and change often. Prices and availability are set by Amazon and its sellers and may change at any time. Check the product page before you buy.</p>
+    </div>
+  </section>
+
+  <!-- HOW WE PICK + ABOUT -->
+  <section id="about">
+    <div class="wrap two">
+      <div class="about">
+        <div class="eyebrow">About O.G.Products</div>
+        <h2>Real taste. Zero noise.</h2>
+        <p><strong>O.G.Products is run by Blaller14 out of Salt Lake City, Utah.</strong> It's part of the O.G. family of small businesses, alongside O.G.AutoSpa (car detailing) and O.G.Productions and O.G.Edits (video production and editing).</p>
+        <p>Spending every day around cars, cameras and creators means noticing what people actually wear, carry and buy. O.G.Products turns that into a simple, honest shortlist: trending fashion and accessories that look good, hold up and don't cost a fortune.</p>
+        <p>We don't sell anything directly and we don't hold inventory. We find the pieces, explain why they're worth a look, and send you straight to the product page so you can decide for yourself.</p>
+      </div>
+      <div>
+        <div class="eyebrow">How we pick</div>
+        <h2>Our process.</h2>
+        <div class="steps">
+          <div class="step"><b>1</b><div><h3>Track the charts</h3><p>Every week we check the best-seller lists across clothing, shoes, jewelry, watches, handbags and accessories.</p></div></div>
+          <div class="step"><b>2</b><div><h3>Cut the filler</h3><p>We skip gimmicks, duplicates and listings with weak reviews, and keep what fits a real wardrobe.</p></div></div>
+          <div class="step"><b>3</b><div><h3>Style it</h3><p>Picks show up in our short-form videos and outfit ideas so you can see them in context.</p></div></div>
+          <div class="step"><b>4</b><div><h3>Refresh weekly</h3><p>The list updates every Monday, so what you see here is what's moving now.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="eyebrow">Contact</div>
+      <h2>Let's talk.</h2>
+      <p class="lead">Questions about a pick, brand collaborations, or a product you think we should feature? Reach out. We read every message.</p>
+      <div class="contact-box">
+        <div class="cbox">
+          <h3>Email</h3>
+          <a href="mailto:ogproductions385@gmail.com">ogproductions385@gmail.com</a>
+          <p class="sm">We usually reply within 1–2 business days.</p>
+        </div>
+        <div class="cbox">
+          <h3>Based in</h3>
+          <p class="big">Salt Lake City, Utah</p>
+          <p class="sm">Operated by Blaller14 · Part of the O.G. family of businesses</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCLOSURE -->
+  <section id="disclosure" class="disclose">
+    <div class="wrap">
+      <div class="eyebrow">Affiliate disclosure &amp; privacy</div>
+      <h2>Transparency first.</h2>
+      <div class="disc-card">
+        <p><strong>O.G.Products is a participant in the Amazon Services LLC Associates Program</strong>, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. Some links on this site are affiliate links. If you click one and make a purchase, we may earn a small commission at no extra cost to you.</p>
+        <p>Commissions never change which products we feature. We pick items based on popularity, reviews and style, and we only recommend things we think are worth your time. Prices, availability and product details are controlled by Amazon and its sellers.</p>
+        <p><strong>Privacy:</strong> This site does not ask for or store personal information, has no accounts, and runs no ads or analytics of its own. When you click through to Amazon, Amazon may use cookies to attribute your purchase; that activity is covered by Amazon's own privacy notice.</p>
+        <p>Read the full <a href="disclosure.html">Affiliate Disclosure</a> and <a href="privacy.html">Privacy Policy</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <a class="logo" href="#top">O.G.<span>Products</span></a>
+        <p style="margin-top:8px">Curated fashion finds · Salt Lake City, Utah</p>
+        <p><a href="mailto:ogproductions385@gmail.com">ogproductions385@gmail.com</a></p>
+      </div>
+      <nav>
+        <a href="#shop">Shop</a><a href="#picks">Trending</a><a href="#about">About</a><a href="#contact">Contact</a><a href="disclosure.html">Disclosure</a><a href="privacy.html">Privacy</a>
+      </nav>
+    </div>
+    <p class="amz">As an Amazon Associate I earn from qualifying purchases.</p>
+    <p style="margin-top:8px">&copy; <span id="yr">2026</span> O.G.Products. Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates.</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var btns = document.querySelectorAll('.filters button');
+    var cards = document.querySelectorAll('#grid .card');
+    function apply(f){
+      btns.forEach(function(b){ b.classList.toggle('on', b.dataset.filter === f); });
+      cards.forEach(function(c){ c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f); });
+    }
+    btns.forEach(function(b){ b.addEventListener('click', function(){ apply(b.dataset.filter); }); });
+    document.querySelectorAll('.cat[data-go]').forEach(function(t){
+      t.setAttribute('href', '#picks');
+      t.addEventListener('click', function(){ apply(t.dataset.go); });
+    });
+    document.querySelectorAll('#menu a').forEach(function(a){ a.addEventListener('click', function(){ document.getElementById('menu').classList.remove('open'); }); });
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
